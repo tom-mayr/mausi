@@ -4,22 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Date with Me?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
         background-color: #ffdfd3;
-        font-family: "Comic Sans MS", cursive, sans-serif;
+        /* font-family: "Comic Sans MS", cursive, sans-serif; */
+        font-family: "Pixelify Sans", sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
         margin: 0;
-        color: #6a1b9a;
+        color: #957dad;
       }
       .card-wrapper {
         position: relative;
         display: inline-block;
         margin-top: 80px; /* spacing from top of page */
+        margin-right: 20px;
+        margin-left: 20px;
       }
 
       .cat-img {
@@ -39,7 +48,7 @@
         border-radius: 20px;
         padding: 100px 30px 30px; /* extra top padding to account for cat */
         text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
         position: relative;
         z-index: 1;
       }
@@ -50,12 +59,14 @@
         justify-content: center;
       }
       button {
-        background: #f8bbd0;
-        border: none;
+        /* background: #f8bbd0; */
+        background: #fec8d8;
+        font-family: "Pixelify Sans", sans-serif;
+        border: 2px solid #f8bbd0;
         padding: 10px 20px;
         border-radius: 12px;
         font-size: 18px;
-        color: #4a148c;
+        color: #957dad;
         cursor: pointer;
         transition: background 0.3s;
       }
@@ -86,10 +97,10 @@
     <div class="card-wrapper">
       <img src="cat_idle.png" alt="Pixel Cat" id="cat" class="cat-img" />
       <div class="card">
-        <h2>Wanna go on a date with me? 💖</h2>
+        <h2>Magst du noch ein bisschen chillen mit mir? 💖</h2>
         <div class="buttons">
-          <button onclick="respond('yes')">Yes! 😻</button>
-          <button onclick="respond('no')">Maybe later 😿</button>
+          <button onclick="respond('yes')">Ja! 😻</button>
+          <button onclick="respond('no')">Anderes Mal 😿</button>
         </div>
       </div>
     </div>
