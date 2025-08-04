@@ -6,7 +6,7 @@
     <title>Date with Me?</title>
     <style>
       body {
-        background-color: #fce4ec;
+        background-color: #ffdfd3;
         font-family: "Comic Sans MS", cursive, sans-serif;
         display: flex;
         flex-direction: column;
@@ -16,18 +16,32 @@
         margin: 0;
         color: #6a1b9a;
       }
-      .card {
-        background: #fff0f5;
-        border: 2px solid #f8bbd0;
-        border-radius: 20px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      .card-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-top: 80px; /* spacing from top of page */
       }
+
       .cat-img {
         width: 180px;
         image-rendering: pixelated;
-        margin-bottom: 20px;
+        position: absolute;
+        top: -90px; /* pull it above the card */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        margin: 0; /* remove margin that was there before */
+      }
+
+      .card {
+        background: #ffffe8;
+        border: 2px solid #f8bbd0;
+        border-radius: 20px;
+        padding: 100px 30px 30px; /* extra top padding to account for cat */
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
       }
       .buttons {
         display: flex;
@@ -69,12 +83,14 @@
     </style>
   </head>
   <body>
-    <div class="card">
+    <div class="card-wrapper">
       <img src="cat_idle.png" alt="Pixel Cat" id="cat" class="cat-img" />
-      <h2>Wanna go on a date with me? 💖</h2>
-      <div class="buttons">
-        <button onclick="respond('yes')">Yes! 😻</button>
-        <button onclick="respond('no')">Maybe later 😿</button>
+      <div class="card">
+        <h2>Wanna go on a date with me? 💖</h2>
+        <div class="buttons">
+          <button onclick="respond('yes')">Yes! 😻</button>
+          <button onclick="respond('no')">Maybe later 😿</button>
+        </div>
       </div>
     </div>
 
