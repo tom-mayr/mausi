@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Date with Me?</title>
+    <title>Mausi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,7 +26,7 @@
       .card-wrapper {
         position: relative;
         display: inline-block;
-        margin-top: 80px; /* spacing from top of page */
+        margin-top: 50px; /* spacing from top of page */
         margin-right: 20px;
         margin-left: 20px;
       }
@@ -52,6 +52,35 @@
         position: relative;
         z-index: 1;
       }
+
+      .message-card {
+        background: #ffe3ed;
+        border: 2px solid #f8bbd0;
+        border-radius: 16px;
+        padding: 16px 24px;
+        text-align: center;
+        font-size: 1.2em;
+        color: #d81b60;
+        margin-top: 16px;
+
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        width: max-content;
+        max-width: 70vw;
+        z-index: 0;
+      }
+
+      .message-card.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+
       .buttons {
         display: flex;
         gap: 20px;
@@ -66,7 +95,7 @@
         padding: 10px 20px;
         border-radius: 12px;
         font-size: 18px;
-        color: #957dad;
+        color: #865dae;
         cursor: pointer;
         transition: background 0.3s;
       }
@@ -91,6 +120,31 @@
           transform: translateY(-200px) scale(1.5);
         }
       }
+
+      @keyframes wiggleJump {
+        0% {
+          transform: translateX(-50%) translateY(0) rotate(0deg);
+        }
+        10% {
+          transform: translateX(-50%) translateY(-10px) rotate(-5deg);
+        }
+        20% {
+          transform: translateX(-50%) translateY(-20px) rotate(5deg);
+        }
+        30% {
+          transform: translateX(-50%) translateY(-15px) rotate(-5deg);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px) rotate(3deg);
+        }
+        50% {
+          transform: translateX(-50%) translateY(0) rotate(0deg);
+        }
+      }
+
+      .cat-img.animate {
+        animation: wiggleJump 1.5s;
+      }
     </style>
   </head>
   <body>
@@ -100,35 +154,51 @@
         <h2>Magst du noch ein bisschen chillen mit mir? 💖</h2>
         <div class="buttons">
           <button onclick="respond('yes')">Ja! 😻</button>
-          <button onclick="respond('no')">Anderes Mal 😿</button>
+          <button onclick="respond('no')">Heute nicht 😿</button>
         </div>
+      </div>
+      <div id="success-message" class="message-card">
+        Yay! Ich freu mich auf dich! 💕
+      </div>
+      <div id="failure-message" class="message-card">
+        Okay, dann bis bald! ✨
       </div>
     </div>
 
     <script>
       function respond(answer) {
         const cat = document.getElementById("cat");
-        if (answer === "yes") {
-          launchHearts(); // ❤️ Add hearts when she says yes
-          //   cat.src = "cat_happy.png"; // Replace with your happy cat image
-          // alert("Yay! Can’t wait! 💕");
-        } else {
-          // cat.src = "cat_sad.png"; // Replace with your sad cat image
-          // alert("That’s okay, maybe another time 🐾")
-        }
-        function launchHearts() {
-          for (let i = 0; i < 10; i++) {
-            const heart = document.createElement("img");
-            heart.src = "heart.png"; // Use your heart image here
-            heart.className = "heart";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = Math.random() * 80 + 20 + "vh";
-            document.body.appendChild(heart);
+        const message = document.getElementById("success-message");
+        const failureMessage = document.getElementById("failure-message");
 
-            setTimeout(() => {
-              heart.remove();
-            }, 10000);
-          }
+        if (answer === "yes") {
+          failureMessage.classList.remove("show");
+          message.classList.add("show");
+          cat.classList.add("animate");
+
+          setTimeout(() => {
+            cat.classList.remove("animate");
+          }, 1500); // Match animation time
+
+          launchHearts();
+        } else {
+          message.classList.remove("show");
+          failureMessage.classList.add("show");
+        }
+      }
+
+      function launchHearts() {
+        for (let i = 0; i < 10; i++) {
+          const heart = document.createElement("img");
+          heart.src = "heart.png"; // Use your heart image here
+          heart.className = "heart";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.top = Math.random() * 80 + 20 + "vh";
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 10000);
         }
       }
     </script>
